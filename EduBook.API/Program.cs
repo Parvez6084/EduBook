@@ -23,7 +23,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("EduBook.Infrastructure")
     ));
-
 builder.Services.AddScoped<IApplicationDbContext, AppDbContext>();
 
 // JWT Settings
