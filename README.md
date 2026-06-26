@@ -79,7 +79,12 @@ graph TB
 
 ## 🧅 Clean architecture
 
+<<<<<<< HEAD
 <img width="1472" height="1240" alt="image" src="https://github.com/user-attachments/assets/87a562f7-f262-4bd9-8dee-3d29cf3c5cbb" />
+=======
+<img width="1472" height="1240" alt="image" src="https://github.com/user-attachments/assets/5a23f26e-ff76-4982-8dbd-76d61bb09532" />
+---
+>>>>>>> 3c251b8 (Update image in Clean architecture section)
 
 ## 🔐 Authentication flow
 
