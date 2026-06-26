@@ -40,11 +40,9 @@ public class AuthController : ControllerBase
 
     [HttpPost("logout")]
     [Authorize]
-    public async Task<IActionResult> Logout([FromBody] LogoutRequest request)
+    public async Task<IActionResult> Logout([FromBody] LogoutRequest command)
     {
-        await _mediator.Send(new LogoutCommand(request.RefreshToken));
+        var result = await _mediator.Send(command.RefreshToken);
         return Ok(ApiResponse<string>.Success("Logged out successfully", "Logout successful"));
     }
 }
-
-public record LogoutRequest(string RefreshToken);
