@@ -14,3 +14,7 @@ public record LoginResponse(
     string AccessToken,
     string RefreshToken
 );
+
+public record LogoutRequest(
+    string RefreshToken
+    );
