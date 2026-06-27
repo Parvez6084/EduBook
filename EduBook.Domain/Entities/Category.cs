@@ -1,0 +1,20 @@
+using EduBook.Domain.Common;
+
+namespace EduBook.Domain.Entities;
+
+public class Category : BaseEntity
+{
+    public string Name { get; set; } = string.Empty;
+
+    public string? Description { get; set; }
+
+    public string? IconUrl { get; set; }
+
+    public Guid? ParentCategoryId { get; set; }
+
+    public Category? ParentCategory { get; set; }
+
+    public ICollection<Category> SubCategories { get; set; } = new List<Category>();
+
+    public ICollection<BookCategory> BookCategories { get; set; } = new List<BookCategory>();
+}
