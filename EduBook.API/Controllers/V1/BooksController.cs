@@ -45,4 +45,21 @@ public class BooksController : ControllerBase
         var result = await _mediator.Send(command);
         return Ok(ApiResponse<CreateBookResponse>.Success(result, "Book created successfully", 201));
     }
+
+    [HttpPut("{id}")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
+    public async Task<IActionResult> UpdateBook(Guid id, [FromBody] UpdateBookCommand command)
+    {
+        var updatedCommand = command with { Id = id };
+        var result = await _mediator.Send(updatedCommand);
+        return Ok(ApiResponse<UpdateBookResponse>.Success(result, "Book updated successfully"));
+    }
+
+    [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
+    public async Task<IActionResult> DeleteBook(Guid id)
+    {
+        await _mediator.Send(new DeleteBookCommand(id));
+        return Ok(ApiResponse<string>.Success("Book deleted successfully", "Book deleted successfully"));
+    }
 }
