@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Authors\DTOs\" />
     <Folder Include="Features\Auth\DTOs\" />
     <Folder Include="Features\Auth\Queries\" />
     <Folder Include="DTOs\" />
