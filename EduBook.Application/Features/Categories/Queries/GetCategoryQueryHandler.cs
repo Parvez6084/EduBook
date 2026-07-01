@@ -7,10 +7,7 @@ namespace EduBook.Application.Features.Categories.Queries;
 
 public class GetCategoriesQueryHandler : BaseHandler, IRequestHandler<GetCategoriesQuery, GetCategoriesResponse>
 {
-    public GetCategoriesQueryHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public GetCategoriesQueryHandler(IApplicationDbContext context) : base(context)
     {
     }
 

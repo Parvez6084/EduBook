@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Exceptions;
 using MediatR;
@@ -8,10 +8,7 @@ namespace EduBook.Application.Features.Publishers.Commands;
 
 public class DeletePublisherCommandHandler : BaseHandler, IRequestHandler<DeletePublisherCommand, bool>
 {
-    public DeletePublisherCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public DeletePublisherCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

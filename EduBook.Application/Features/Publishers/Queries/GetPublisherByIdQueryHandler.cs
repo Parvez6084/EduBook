@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Exceptions;
 using MediatR;
@@ -8,10 +8,7 @@ namespace EduBook.Application.Features.Publishers.Queries;
 
 public class GetPublisherByIdQueryHandler : BaseHandler, IRequestHandler<GetPublisherByIdQuery, PublisherDto>
 {
-    public GetPublisherByIdQueryHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public GetPublisherByIdQueryHandler(IApplicationDbContext context) : base(context)
     {
     }
 

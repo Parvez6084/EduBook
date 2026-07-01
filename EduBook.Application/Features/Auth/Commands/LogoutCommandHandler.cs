@@ -8,10 +8,7 @@ namespace EduBook.Application.Features.Auth.Commands;
 
 public class LogoutCommandHandler : BaseHandler, IRequestHandler<LogoutCommand, bool>
 {
-    public LogoutCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public LogoutCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

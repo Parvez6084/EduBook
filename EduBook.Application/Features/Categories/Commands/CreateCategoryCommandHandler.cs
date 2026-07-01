@@ -7,10 +7,7 @@ namespace EduBook.Application.Features.Categories.Commands;
 
 public class CreateCategoryCommandHandler : BaseHandler, IRequestHandler<CreateCategoryCommand, CreateCategoryResponse>
 {
-    public CreateCategoryCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public CreateCategoryCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

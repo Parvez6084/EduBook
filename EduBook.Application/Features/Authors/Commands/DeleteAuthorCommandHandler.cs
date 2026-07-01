@@ -8,10 +8,7 @@ namespace EduBook.Application.Features.Authors.Commands;
 
 public class DeleteAuthorCommandHandler : BaseHandler, IRequestHandler<DeleteAuthorCommand, bool>
 {
-    public DeleteAuthorCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public DeleteAuthorCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

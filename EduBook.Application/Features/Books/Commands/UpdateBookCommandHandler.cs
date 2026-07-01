@@ -9,10 +9,7 @@ namespace EduBook.Application.Features.Books.Commands;
 
 public class UpdateBookCommandHandler : BaseHandler, IRequestHandler<UpdateBookCommand, UpdateBookResponse>
 {
-    public UpdateBookCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public UpdateBookCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

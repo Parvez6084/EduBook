@@ -7,10 +7,7 @@ namespace EduBook.Application.Features.Authors.Commands;
 
 public class CreateAuthorCommandHandler : BaseHandler, IRequestHandler<CreateAuthorCommand, CreateAuthorResponse>
 {
-    public CreateAuthorCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public CreateAuthorCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

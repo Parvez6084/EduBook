@@ -9,11 +9,13 @@ namespace EduBook.Application.Features.Auth.Commands;
 
 public class RefreshTokenCommandHandler : BaseHandler, IRequestHandler<RefreshTokenCommand, RefreshTokenResponse>
 {
+    private readonly IJwtService _jwtService;
+
     public RefreshTokenCommandHandler(
         IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+        IJwtService jwtService) : base(context)
     {
+        _jwtService = jwtService;
     }
 
     public async Task<RefreshTokenResponse> Handle(
@@ -33,8 +35,8 @@ public class RefreshTokenCommandHandler : BaseHandler, IRequestHandler<RefreshTo
         refreshToken.RevokedAt = DateTime.UtcNow;
         refreshToken.UpdatedAt = DateTime.UtcNow;
 
-        var newAccessToken = JwtService.GenerateAccessToken(refreshToken.User);
-        var newRefreshToken = JwtService.GenerateRefreshToken();
+        var newAccessToken = _jwtService.GenerateAccessToken(refreshToken.User);
+        var newRefreshToken = _jwtService.GenerateRefreshToken();
 
         var newRefreshTokenEntity = new RefreshToken
         {

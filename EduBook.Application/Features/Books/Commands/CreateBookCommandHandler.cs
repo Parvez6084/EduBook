@@ -9,10 +9,7 @@ namespace EduBook.Application.Features.Books.Commands;
 
 public class CreateBookCommandHandler : BaseHandler, IRequestHandler<CreateBookCommand, CreateBookResponse>
 {
-    public CreateBookCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public CreateBookCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

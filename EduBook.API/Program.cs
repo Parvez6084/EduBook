@@ -4,6 +4,7 @@ using EduBook.Application.Features.Auth.Commands;
 using EduBook.Application.Interfaces;
 using EduBook.Infrastructure.Persistence;
 using EduBook.Infrastructure.Services.Auth;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -11,11 +12,21 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add Logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// MediatR
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(RegisterCommand).Assembly));
+
+// FluentValidation
+builder.Services.AddValidatorsFromAssemblyContaining<RegisterCommand>();
 
 // Database
 builder.Services.AddDbContext<AppDbContext>(options =>

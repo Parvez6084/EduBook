@@ -8,10 +8,7 @@ namespace EduBook.Application.Features.Categories.Queries;
 
 public class GetCategoryByIdQueryHandler : BaseHandler, IRequestHandler<GetCategoryByIdQuery, CategoryDto>
 {
-    public GetCategoryByIdQueryHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public GetCategoryByIdQueryHandler(IApplicationDbContext context) : base(context)
     {
     }
 

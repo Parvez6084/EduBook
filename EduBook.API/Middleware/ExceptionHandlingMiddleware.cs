@@ -56,6 +56,19 @@ public class ExceptionHandlingMiddleware
                 response.Message = exception.Message;
                 break;
 
+            case DuplicateEmailException:
+            case DuplicatePhoneException:
+                context.Response.StatusCode = (int)HttpStatusCode.Conflict;
+                response.StatusCode = 409;
+                response.Message = exception.Message;
+                break;
+
+            case InvalidCredentialsException:
+                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                response.StatusCode = 401;
+                response.Message = exception.Message;
+                break;
+
             default:
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.StatusCode = 500;

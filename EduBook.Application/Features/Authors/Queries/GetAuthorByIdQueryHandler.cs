@@ -8,10 +8,7 @@ namespace EduBook.Application.Features.Authors.Queries;
 
 public class GetAuthorByIdQueryHandler : BaseHandler, IRequestHandler<GetAuthorByIdQuery, AuthorDto>
 {
-    public GetAuthorByIdQueryHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public GetAuthorByIdQueryHandler(IApplicationDbContext context) : base(context)
     {
     }
 

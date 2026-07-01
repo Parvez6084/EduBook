@@ -8,10 +8,7 @@ namespace EduBook.Application.Features.Authors.Commands;
 
 public class UpdateAuthorCommandHandler : BaseHandler, IRequestHandler<UpdateAuthorCommand, UpdateAuthorResponse>
 {
-    public UpdateAuthorCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public UpdateAuthorCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

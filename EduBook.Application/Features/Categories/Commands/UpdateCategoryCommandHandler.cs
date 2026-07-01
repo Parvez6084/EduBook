@@ -8,10 +8,7 @@ namespace EduBook.Application.Features.Categories.Commands;
 
 public class UpdateCategoryCommandHandler : BaseHandler, IRequestHandler<UpdateCategoryCommand, UpdateCategoryResponse>
 {
-    public UpdateCategoryCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public UpdateCategoryCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

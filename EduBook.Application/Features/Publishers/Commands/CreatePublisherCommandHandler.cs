@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Entities;
 using MediatR;
@@ -7,10 +7,7 @@ namespace EduBook.Application.Features.Publishers.Commands;
 
 public class CreatePublisherCommandHandler : BaseHandler, IRequestHandler<CreatePublisherCommand, CreatePublisherResponse>
 {
-    public CreatePublisherCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public CreatePublisherCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

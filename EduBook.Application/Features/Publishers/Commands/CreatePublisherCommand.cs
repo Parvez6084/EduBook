@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 
 namespace EduBook.Application.Features.Publishers.Commands;
 

@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -7,10 +7,7 @@ namespace EduBook.Application.Features.Publishers.Queries;
 
 public class GetPublishersQueryHandler : BaseHandler, IRequestHandler<GetPublishersQuery, GetPublishersResponse>
 {
-    public GetPublishersQueryHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public GetPublishersQueryHandler(IApplicationDbContext context) : base(context)
     {
     }
 

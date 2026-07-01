@@ -8,10 +8,7 @@ namespace EduBook.Application.Features.Categories.Commands;
 
 public class DeleteCategoryCommandHandler : BaseHandler, IRequestHandler<DeleteCategoryCommand, bool>
 {
-    public DeleteCategoryCommandHandler(
-        IApplicationDbContext context,
-        IJwtService jwtService,
-        IPasswordHasher passwordHasher) : base(context, jwtService, passwordHasher)
+    public DeleteCategoryCommandHandler(IApplicationDbContext context) : base(context)
     {
     }
 

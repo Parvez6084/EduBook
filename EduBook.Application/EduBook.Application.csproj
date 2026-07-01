@@ -17,7 +17,9 @@
     <Folder Include="DTOs\" />
     <Folder Include="Features\Books\DTOs\" />
     <Folder Include="Features\Categories\DTOs\" />
-    <Folder Include="Features\Publisher\DTOs\" />
+    <Folder Include="Features\Publishers\Commands\" />
+    <Folder Include="Features\Publishers\DTOs\" />
+    <Folder Include="Features\Publishers\Queries\" />
     <Folder Include="Mappings\" />
     <Folder Include="Behaviors\" />
   </ItemGroup>
