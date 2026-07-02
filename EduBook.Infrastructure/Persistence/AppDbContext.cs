@@ -20,6 +20,9 @@ public class AppDbContext : DbContext, IApplicationDbContext
     public DbSet<BookAuthor> BookAuthors { get; set; } = null!;
     public DbSet<BookCategory> BookCategories { get; set; } = null!;
     public DbSet<BookFile> BookFiles { get; set; } = null!;
+    public DbSet<Purchase> Purchases { get; set; } = null!;
+    public DbSet<Subscription> Subscriptions { get; set; } = null!;
+    public DbSet<PaymentTransaction> PaymentTransactions { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

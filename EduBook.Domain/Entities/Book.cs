@@ -23,4 +23,6 @@ public class Book : BaseEntity
     public ICollection<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
     public ICollection<BookCategory> BookCategories { get; set; } = new List<BookCategory>();
     public ICollection<BookFile> BookFiles { get; set; } = new List<BookFile>();
+    public ICollection<Purchase> Purchases { get; set; } = new List<Purchase>();
+
 }

@@ -7,6 +7,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
+
 namespace EduBook.Application.Features.Auth.Commands;
 
 public class RegisterCommandHandler : BaseHandler, IRequestHandler<RegisterCommand, RegisterResponse>

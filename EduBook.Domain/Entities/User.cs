@@ -17,5 +17,9 @@ public class  User :BaseEntity
 
     public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
     public ICollection<OtpCode> OtpCodes { get; set; } = new List<OtpCode>();
+    public ICollection<Purchase> Purchases { get; set; } = new List<Purchase>();
+    public ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
+    public ICollection<PaymentTransaction> PaymentTransactions { get; set; } = new List<PaymentTransaction>();
+
 
 }

@@ -15,5 +15,9 @@ public interface IApplicationDbContext
     DbSet<BookAuthor> BookAuthors { get; }
     DbSet<BookCategory> BookCategories { get; }
     DbSet<BookFile> BookFiles { get; }
+    DbSet<Purchase> Purchases { get; }
+    DbSet<Subscription> Subscriptions { get; }
+    DbSet<PaymentTransaction> PaymentTransactions { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
