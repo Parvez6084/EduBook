@@ -19,8 +19,7 @@ public class PurchasesController : ControllerBase
     {
         _mediator = mediator;
     }
-    public record CreatePurchaseRequest(Guid BookId, string Gateway, string IdempotencyKey);
-
+ 
     [HttpPost]
     public async Task<IActionResult> CreatePurchase([FromBody] CreatePurchaseRequest request)
     {
@@ -47,3 +46,9 @@ public class PurchasesController : ControllerBase
         return Ok(ApiResponse<GetPurchaseHistoryResponse>.Success(result, "Purchase history retrieved successfully"));
     }
 }
+
+public record CreatePurchaseRequest(
+    Guid BookId,
+    string Gateway,
+    string IdempotencyKey
+);
