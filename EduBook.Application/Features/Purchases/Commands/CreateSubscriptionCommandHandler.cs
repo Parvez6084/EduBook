@@ -28,6 +28,14 @@ public class CreateSubscriptionCommandHandler : BaseHandler, IRequestHandler<Cre
         if (existingSubscription != null)
             throw new ValidationException("You already have an active subscription");
 
+        // Check idempotency key
+        var existingTransaction = await Context.PaymentTransactions
+            .FirstOrDefaultAsync(t => t.IdempotencyKey == request.IdempotencyKey, cancellationToken);
+
+        if (existingTransaction != null)
+            throw new ValidationException("Duplicate request — this transaction already exists");
+
+
         // Calculate plan details
         var plan = Enum.Parse<SubscriptionPlan>(request.Plan);
         var startDate = DateTime.UtcNow;

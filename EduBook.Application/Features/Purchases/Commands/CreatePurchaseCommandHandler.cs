@@ -31,6 +31,14 @@ public class CreatePurchaseCommandHandler : BaseHandler, IRequestHandler<CreateP
         if (existingPurchase != null && existingPurchase.Status == PurchaseStatus.Completed)
             throw new ValidationException("You have already purchased this book");
 
+        // Check idempotency key
+        var existingTransaction = await Context.PaymentTransactions
+            .FirstOrDefaultAsync(t => t.IdempotencyKey == request.IdempotencyKey, cancellationToken);
+
+        if (existingTransaction != null)
+            throw new ValidationException("Duplicate request — this transaction already exists");
+
+
         // Create payment transaction
         var transaction = new PaymentTransaction
         {

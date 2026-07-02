@@ -4,6 +4,7 @@ using EduBook.Application.Features.Auth.Commands;
 using EduBook.Application.Interfaces;
 using EduBook.Infrastructure.Persistence;
 using EduBook.Infrastructure.Services.Auth;
+using EduBook.Infrastructure.Services.Payment;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,12 @@ builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"))
 // Services
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+// Payment Service
+builder.Services.Configure<BkashSettings>(builder.Configuration.GetSection("Bkash"));
+builder.Services.Configure<SSLCommerzSettings>(builder.Configuration.GetSection("SSLCommerz"));
+builder.Services.AddHttpClient<IBkashService, BkashService>();
+
 
 // JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
