@@ -25,4 +25,9 @@ public class Book : BaseEntity
     public ICollection<BookFile> BookFiles { get; set; } = new List<BookFile>();
     public ICollection<Purchase> Purchases { get; set; } = new List<Purchase>();
 
+    public ICollection<ReadingProgress> ReadingProgresses { get; set; } = new List<ReadingProgress>();
+    public ICollection<Bookmark> Bookmarks { get; set; } = new List<Bookmark>();
+    public ICollection<Highlight> Highlights { get; set; } = new List<Highlight>();
+    public ICollection<Note> Notes { get; set; } = new List<Note>();
+
 }

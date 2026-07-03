@@ -18,6 +18,11 @@ public interface IApplicationDbContext
     DbSet<Purchase> Purchases { get; }
     DbSet<Subscription> Subscriptions { get; }
     DbSet<PaymentTransaction> PaymentTransactions { get; }
+    DbSet<ReadingProgress> ReadingProgresses { get; }
+    DbSet<Bookmark> Bookmarks { get; }
+    DbSet<Highlight> Highlights { get; }
+    DbSet<Note> Notes { get; }
+
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

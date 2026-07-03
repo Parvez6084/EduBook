@@ -22,4 +22,8 @@ public class  User :BaseEntity
     public ICollection<PaymentTransaction> PaymentTransactions { get; set; } = new List<PaymentTransaction>();
 
 
+    public ICollection<ReadingProgress> ReadingProgresses { get; set; } = new List<ReadingProgress>();
+    public ICollection<Bookmark> Bookmarks { get; set; } = new List<Bookmark>();
+    public ICollection<Highlight> Highlights { get; set; } = new List<Highlight>();
+    public ICollection<Note> Notes { get; set; } = new List<Note>();
 }

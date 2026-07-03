@@ -23,7 +23,10 @@ public class AppDbContext : DbContext, IApplicationDbContext
     public DbSet<Purchase> Purchases { get; set; } = null!;
     public DbSet<Subscription> Subscriptions { get; set; } = null!;
     public DbSet<PaymentTransaction> PaymentTransactions { get; set; } = null!;
-
+    public DbSet<ReadingProgress> ReadingProgresses { get; set; } = null!;
+    public DbSet<Bookmark> Bookmarks { get; set; } = null!;
+    public DbSet<Highlight> Highlights { get; set; } = null!;
+    public DbSet<Note> Notes { get; set; } = null!;
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
