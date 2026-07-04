@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="Features\Authors\DTOs\" />
     <Folder Include="Features\Auth\DTOs\" />
-    <Folder Include="Features\Auth\Queries\" />
     <Folder Include="DTOs\" />
     <Folder Include="Features\Books\DTOs\" />
     <Folder Include="Features\Categories\DTOs\" />

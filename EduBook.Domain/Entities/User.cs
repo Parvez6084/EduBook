@@ -10,7 +10,7 @@ public class  User :BaseEntity
     public string? PasswordHash { get; set; }
     public bool IsEmailVerified { get; set; }
     public bool IsPhoneVerified { get; set; }
-    public string? ProfilePictureUrl { get; set; }
+    public string? ProfileImageUrl { get; set; }
     public DateTime? LastLoginAt { get; set; }
     public UserRole Role { get; set; }
     public UserStatus Status { get; set; }

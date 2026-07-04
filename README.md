@@ -19,12 +19,16 @@
 
 <br/>
 
+</div>
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat-square)
 ![Architecture](https://img.shields.io/badge/Architecture-Clean-blueviolet?style=flat-square)
 ![Pattern](https://img.shields.io/badge/Pattern-CQRS-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-Private-red?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-In_Development-orange?style=flat-square)
 
+**Overall project completion: 18.5%**
+
+</div>
 </div>
 
 ---
@@ -461,7 +465,7 @@ edubook-platform/
 gantt
     title EduBook Platform — Development roadmap
     dateFormat  YYYY-MM-DD
-    section Phase 1 — Foundation (75%)
+    section Phase 1 — Foundation (62.5%)
     Solution scaffold        :done,    p1a, 2026-01-01, 7d
     Domain entities          :done,    p1b, after p1a, 7d
     PostgreSQL + EF Core     :done,    p1c, after p1b, 7d
@@ -484,7 +488,7 @@ gantt
 
 ### Phase details
 
-**Phase 1 — Foundation (75% complete)**
+**Phase 1 — Foundation (62.5% complete)**
 - [x] Clean Architecture solution scaffold
 - [x] Domain entities (User, Book, Purchase, Subscription)
 - [x] PostgreSQL + EF Core migrations
