@@ -26,4 +26,6 @@ public class  User :BaseEntity
     public ICollection<Bookmark> Bookmarks { get; set; } = new List<Bookmark>();
     public ICollection<Highlight> Highlights { get; set; } = new List<Highlight>();
     public ICollection<Note> Notes { get; set; } = new List<Note>();
+
+    public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 }

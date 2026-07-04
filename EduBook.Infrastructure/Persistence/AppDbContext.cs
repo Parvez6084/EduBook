@@ -27,6 +27,10 @@ public class AppDbContext : DbContext, IApplicationDbContext
     public DbSet<Bookmark> Bookmarks { get; set; } = null!;
     public DbSet<Highlight> Highlights { get; set; } = null!;
     public DbSet<Note> Notes { get; set; } = null!;
+    public DbSet<Notification> Notifications { get; } = null!;
+
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

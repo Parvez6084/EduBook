@@ -22,7 +22,7 @@ public interface IApplicationDbContext
     DbSet<Bookmark> Bookmarks { get; }
     DbSet<Highlight> Highlights { get; }
     DbSet<Note> Notes { get; }
-
+    DbSet<Notification> Notifications { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

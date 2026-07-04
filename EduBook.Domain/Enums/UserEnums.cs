@@ -25,3 +25,13 @@ public enum OtpType
     PasswordReset = 3,
     Login = 4
 }
+
+public enum NotificationType
+{
+    PurchaseConfirmation = 1,
+    SubscriptionConfirmation = 2,
+    SubscriptionExpiring = 3,
+    NewBook = 4,
+    Promotional = 5,
+    System = 6
+}
