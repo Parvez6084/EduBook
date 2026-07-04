@@ -62,4 +62,26 @@ public class BooksController : ControllerBase
         await _mediator.Send(new DeleteBookCommand(id));
         return Ok(ApiResponse<string>.Success("Book deleted successfully", "Book deleted successfully"));
     }
+
+    [HttpGet("search")]
+    public async Task<IActionResult> SearchBooks(
+    [FromQuery] string q,
+    [FromQuery] int page = 1,
+    [FromQuery] int pageSize = 10,
+    [FromQuery] string? format = null,
+    [FromQuery] decimal? minPrice = null,
+    [FromQuery] decimal? maxPrice = null,
+    [FromQuery] int? gradeLevel = null,
+    [FromQuery] Guid? categoryId = null,
+    [FromQuery] Guid? authorId = null,
+    [FromQuery] Guid? publisherId = null)
+    {
+        var query = new SearchBooksQuery(
+            q, page, pageSize, format,
+            minPrice, maxPrice, gradeLevel,
+            categoryId, authorId, publisherId);
+
+        var result = await _mediator.Send(query);
+        return Ok(ApiResponse<SearchBooksResponse>.Success(result, "Search completed successfully"));
+    }
 }
