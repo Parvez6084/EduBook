@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Features.Auth.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -42,7 +42,7 @@ public class AuthController : ControllerBase
     [Authorize]
     public async Task<IActionResult> Logout([FromBody] LogoutRequest command)
     {
-        var result = await _mediator.Send(command.RefreshToken);
+        var result = await _mediator.Send(new LogoutCommand(command.RefreshToken));
         return Ok(ApiResponse<string>.Success("Logged out successfully", "Logout successful"));
     }
 }

@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Entities;
 using EduBook.Domain.Enums;
@@ -55,22 +55,20 @@ public class CreateSubscriptionCommandHandler : BaseHandler, IRequestHandler<Cre
             IdempotencyKey = request.IdempotencyKey
         };
 
-        Context.PaymentTransactions.Add(transaction);
-        await Context.SaveChangesAsync(cancellationToken);
-
         // Create subscription
         var subscription = new Subscription
         {
             UserId = request.UserId,
             Plan = plan,
-            Status = SubscriptionStatus.Active,
+            Status = SubscriptionStatus.PendingPayment,
             StartDate = startDate,
             EndDate = endDate,
             AutoRenew = true,
             PricePaid = amount,
-            TransactionId = transaction.Id
+            Transaction = transaction
         };
 
+        Context.PaymentTransactions.Add(transaction);
         Context.Subscriptions.Add(subscription);
         await Context.SaveChangesAsync(cancellationToken);
 

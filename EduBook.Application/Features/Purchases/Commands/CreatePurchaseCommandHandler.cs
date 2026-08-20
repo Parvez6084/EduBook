@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Entities;
 using EduBook.Domain.Enums;
@@ -26,7 +26,7 @@ public class CreatePurchaseCommandHandler : BaseHandler, IRequestHandler<CreateP
 
         // Check if already purchased
         var existingPurchase = await Context.Purchases
-            .FirstOrDefaultAsync(p => p.BookId == request.BookId, cancellationToken);
+            .FirstOrDefaultAsync(p => p.BookId == request.BookId && p.UserId == request.UserId, cancellationToken);
 
         if (existingPurchase != null && existingPurchase.Status == PurchaseStatus.Completed)
             throw new ValidationException("You have already purchased this book");
@@ -49,9 +49,6 @@ public class CreatePurchaseCommandHandler : BaseHandler, IRequestHandler<CreateP
             IdempotencyKey = request.IdempotencyKey
         };
 
-        Context.PaymentTransactions.Add(transaction);
-        await Context.SaveChangesAsync(cancellationToken);
-
         // Create purchase
         var purchase = new Purchase
         {
@@ -59,9 +56,10 @@ public class CreatePurchaseCommandHandler : BaseHandler, IRequestHandler<CreateP
             BookId = request.BookId,
             PricePaid = book.Price,
             Status = PurchaseStatus.Pending,
-            TransactionId = transaction.Id
+            Transaction = transaction
         };
 
+        Context.PaymentTransactions.Add(transaction);
         Context.Purchases.Add(purchase);
         await Context.SaveChangesAsync(cancellationToken);
 

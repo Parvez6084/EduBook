@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Enums;
 using EduBook.Domain.Exceptions;
@@ -25,10 +25,9 @@ public class CancelSubscriptionCommandHandler : BaseHandler, IRequestHandler<Can
         if (subscription == null)
             throw new NotFoundException("Subscription not found");
 
-        if (subscription.Status == SubscriptionStatus.Cancelled)
-            throw new ValidationException("Subscription is already cancelled");
+        if (!subscription.AutoRenew)
+            throw new ValidationException("Subscription auto-renewal is already cancelled");
 
-        subscription.Status = SubscriptionStatus.Cancelled;
         subscription.AutoRenew = false;
         subscription.UpdatedAt = DateTime.UtcNow;
 

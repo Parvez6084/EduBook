@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Enums;
 using EduBook.Infrastructure.Persistence;
@@ -66,7 +66,23 @@ public class PaymentsController : ControllerBase
                     .FirstOrDefaultAsync(p => p.TransactionId == transaction.Id);
 
                 if (purchase != null)
+                {
                     purchase.Status = PurchaseStatus.Completed;
+                }
+                else
+                {
+                    var subscription = await _context.Subscriptions
+                        .FirstOrDefaultAsync(s => s.TransactionId == transaction.Id);
+
+                    if (subscription != null)
+                    {
+                        subscription.Status = SubscriptionStatus.Active;
+                        subscription.StartDate = DateTime.UtcNow;
+                        subscription.EndDate = subscription.Plan == SubscriptionPlan.Monthly
+                            ? DateTime.UtcNow.AddMonths(1)
+                            : DateTime.UtcNow.AddYears(1);
+                    }
+                }
 
                 await _context.SaveChangesAsync();
             }

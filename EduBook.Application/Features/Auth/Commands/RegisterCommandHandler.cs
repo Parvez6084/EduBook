@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Entities;
 using EduBook.Domain.Enums;
@@ -58,8 +58,6 @@ public class RegisterCommandHandler : BaseHandler, IRequestHandler<RegisterComma
         };
 
         Context.Users.Add(user);
-        await Context.SaveChangesAsync(cancellationToken);
-
 
         var accessToken = _jwtService.GenerateAccessToken(user);
         var refreshToken = _jwtService.GenerateRefreshToken();

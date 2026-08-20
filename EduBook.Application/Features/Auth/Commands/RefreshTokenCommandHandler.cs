@@ -1,6 +1,7 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Entities;
+using EduBook.Domain.Enums;
 using EduBook.Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,12 @@ public class RefreshTokenCommandHandler : BaseHandler, IRequestHandler<RefreshTo
 
         if (!refreshToken.IsActive)
             throw new UnauthorizedException("Refresh token has expired or been revoked");
+
+        if (refreshToken.User.DeletedAt != null)
+            throw new UnauthorizedException("User account is deleted");
+
+        if (refreshToken.User.Status == UserStatus.Banned)
+            throw new UnauthorizedException("User account is banned");
 
         refreshToken.RevokedAt = DateTime.UtcNow;
         refreshToken.UpdatedAt = DateTime.UtcNow;

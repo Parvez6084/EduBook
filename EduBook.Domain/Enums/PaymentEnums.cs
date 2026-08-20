@@ -1,4 +1,4 @@
-﻿namespace EduBook.Domain.Enums;
+namespace EduBook.Domain.Enums;
 
 public enum PaymentGateway
 {
@@ -36,5 +36,6 @@ public enum SubscriptionStatus
     Active = 1,
     Expired = 2,
     Cancelled = 3,
-    PastDue = 4
+    PastDue = 4,
+    PendingPayment = 5
 }
