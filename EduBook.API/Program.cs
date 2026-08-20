@@ -5,6 +5,7 @@ using EduBook.Application.Interfaces;
 using EduBook.Infrastructure.Persistence;
 using EduBook.Infrastructure.Services.Auth;
 using EduBook.Infrastructure.Services.Payment;
+using EduBook.Infrastructure.Services.Storage;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +45,9 @@ builder.Services.Configure<BkashSettings>(builder.Configuration.GetSection("Bkas
 builder.Services.Configure<SSLCommerzSettings>(builder.Configuration.GetSection("SSLCommerz"));
 builder.Services.AddHttpClient<IBkashService, BkashService>();
 
+// Store Service
+builder.Services.Configure<StorageSettings>(builder.Configuration.GetSection("Storage"));
+builder.Services.AddScoped<IStorageService, S3StorageService>();
 
 // JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();

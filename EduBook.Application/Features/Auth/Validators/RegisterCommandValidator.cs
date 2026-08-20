@@ -30,14 +30,14 @@ public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 
         RuleFor(x => x.Role)
             .NotEmpty().WithMessage("Role is required.")
-            .Must(role => IsValidRole(role)).WithMessage("Invalid role. Must be 'Admin', 'Instructor', or 'Student'.");
+            .Must(role => IsValidRole(role)).WithMessage("Invalid role. Must be 'Student', 'Teacher', 'Parent', or 'Institution'.");
     }
 
     private static bool IsValidRole(string role)
     {
         return role switch
         {
-            "Admin" or "Instructor" or "Student" => true,
+            "Student" or "Teacher" or "Parent" or "Institution" => true,
             _ => false
         };
     }

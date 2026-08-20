@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Entities;
 using EduBook.Domain.Enums;
@@ -31,14 +31,13 @@ public class CreateBookCommandHandler : BaseHandler, IRequestHandler<CreateBookC
         };
 
         Context.Books.Add(book);
-        await Context.SaveChangesAsync(cancellationToken);
 
         // Add authors
         foreach (var authorId in request.AuthorIds)
         {
             Context.BookAuthors.Add(new BookAuthor
             {
-                BookId = book.Id,
+                Book = book,
                 AuthorId = authorId
             });
         }
@@ -48,7 +47,7 @@ public class CreateBookCommandHandler : BaseHandler, IRequestHandler<CreateBookC
         {
             Context.BookCategories.Add(new BookCategory
             {
-                BookId = book.Id,
+                Book = book,
                 CategoryId = categoryId
             });
         }

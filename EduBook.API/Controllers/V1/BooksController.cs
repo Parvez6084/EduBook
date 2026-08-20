@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Features.Books.Commands;
 using EduBook.Application.Features.Books.Queries;
 using MediatR;
@@ -39,7 +39,7 @@ public class BooksController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "Admin,SuperAdmin,Institution")]
     public async Task<IActionResult> CreateBook([FromBody] CreateBookCommand command)
     {
         var result = await _mediator.Send(command);
@@ -83,5 +83,14 @@ public class BooksController : ControllerBase
 
         var result = await _mediator.Send(query);
         return Ok(ApiResponse<SearchBooksResponse>.Success(result, "Search completed successfully"));
+    }
+
+    [HttpPost("{bookId}/upload")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
+    public async Task<IActionResult> UploadBookFile(Guid bookId, IFormFile file, [FromForm] string format)
+    {
+        var command = new UploadBookFileCommand(bookId, file, format);
+        var result = await _mediator.Send(command);
+        return Ok(ApiResponse<UploadBookFileResponse>.Success(result, "File uploaded successfully", 201));
     }
 }

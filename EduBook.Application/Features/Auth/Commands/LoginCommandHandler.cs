@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Common;
+using EduBook.Application.Common;
 using EduBook.Application.Interfaces;
 using EduBook.Domain.Entities;
 using EduBook.Domain.Exceptions;
@@ -26,8 +26,9 @@ public class LoginCommandHandler : BaseHandler, IRequestHandler<LoginCommand, Lo
 
         var user = await Context.Users
             .FirstOrDefaultAsync(u =>
-                u.Email == request.EmailOrPhone ||
-                u.PhoneNumber == request.EmailOrPhone,
+                (u.Email == request.EmailOrPhone ||
+                u.PhoneNumber == request.EmailOrPhone) &&
+                u.DeletedAt == null,
                 cancellationToken);
 
         if (user == null)
@@ -47,7 +48,6 @@ public class LoginCommandHandler : BaseHandler, IRequestHandler<LoginCommand, Lo
 
         user.LastLoginAt = DateTime.UtcNow;
         user.UpdatedAt = DateTime.UtcNow;
-        await Context.SaveChangesAsync(cancellationToken);
 
         var accessToken = _jwtService.GenerateAccessToken(user);
         var refreshToken = _jwtService.GenerateRefreshToken();

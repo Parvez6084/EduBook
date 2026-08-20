@@ -1,4 +1,4 @@
-﻿using EduBook.Domain.Entities;
+using EduBook.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,6 +20,8 @@ public class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>
 
         builder.Property(x => x.IpAddress)
                .HasMaxLength(50);
+
+        builder.HasIndex(x => x.Token);
 
         builder.HasOne(x => x.User)
                .WithMany(x => x.RefreshTokens)

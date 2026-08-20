@@ -1,4 +1,4 @@
-﻿using EduBook.Application.Interfaces;
+using EduBook.Application.Interfaces;
 using EduBook.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,5 +35,12 @@ public class AppDbContext : DbContext, IApplicationDbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+
+        // Global query filters for soft delete consistency
+        modelBuilder.Entity<User>().HasQueryFilter(u => u.DeletedAt == null);
+        modelBuilder.Entity<Book>().HasQueryFilter(b => b.DeletedAt == null);
+        modelBuilder.Entity<Author>().HasQueryFilter(a => a.DeletedAt == null);
+        modelBuilder.Entity<Publisher>().HasQueryFilter(p => p.DeletedAt == null);
+        modelBuilder.Entity<Category>().HasQueryFilter(c => c.DeletedAt == null);
     }
 }

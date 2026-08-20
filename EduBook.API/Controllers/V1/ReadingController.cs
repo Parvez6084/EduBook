@@ -81,6 +81,16 @@ public class ReadingController : ControllerBase
         var result = await _mediator.Send(command);
         return Ok(ApiResponse<AddNoteResponse>.Success(result, "Note added successfully", 201));
     }
+
+    [HttpGet("{bookId}/url")]
+    public async Task<IActionResult> GetSignedUrl(Guid bookId)
+    {
+        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+        var result = await _mediator.Send(new GetSignedUrlQuery(bookId, userId));
+        return Ok(ApiResponse<SignedUrlDto>.Success(result, "Signed URL generated successfully"));
+    }
+
+
 }
 
 public record SyncProgressRequest(int CurrentPage, int TotalPages);
